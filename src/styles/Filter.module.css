@@ -1,0 +1,57 @@
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  padding: 10px 0;
+  margin: 10px 2rem;
+}
+
+.role {
+  min-width: 10rem;
+  margin: 0 0.1rem;
+}
+
+.employees {
+  min-width: 14rem;
+  margin: 0 0.1rem;
+}
+
+.experience {
+  min-width: 10rem;
+  margin: 0 0.1rem;
+}
+
+.remote {
+  min-width: 9rem;
+  margin: 0 0.1rem;
+}
+
+.tech {
+  min-width: 11rem;
+  margin: 0 0.1rem;
+}
+
+.salary {
+  min-width: 16rem;
+  margin: 0 0.1rem;
+}
+
+.search {
+  min-width: 14rem;
+  padding: 0.6rem 0.5rem;
+  /* border: none; */
+  border: 1px solid #949494;
+  color: #949494;
+  font-weight: 550;
+  border-radius: 0.25rem;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.search::placeholder {
+  color: #949494;
+  font-weight: 600;
+}
