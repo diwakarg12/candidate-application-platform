@@ -46,14 +46,15 @@ export const remote = [
 ]
 
 export const salary = [
-    { value: 0, label: '0L' },
-    { value: 100, label: '5L' },
-    { value: 150, label: '10L' },
-    { value: 200, label: '15L' },
-    { value: 250, label: '20L' },
-    { value: 300, label: '25L' },
-    { value: 350, label: '30L' },
-    { value: 400, label: '35L' },
-    { value: 450, label: '40L' },
-    { value: 500, label: '50L' },
+    { value: 0, label: '0USD' },
+    { value: 50, label: '50USD' },
+    { value: 100, label: '100USD' },
+    { value: 150, label: '150USD' },
+    { value: 200, label: '200USD' },
+    { value: 250, label: '250USD' },
+    { value: 300, label: '300USD' },
+    { value: 350, label: '350USD' },
+    { value: 400, label: '400USD' },
+    { value: 450, label: '450USD' },
+    { value: 500, label: '500USD' },
 ];

@@ -46,11 +46,12 @@ function App() {
     }
 
     if (filters.salary.length) {
-      const minSalaryValue = Math.min(
-        ...filters.salary.map((option) => option.value)
+      // Check if any of the selected salary values are less than job.minJdSalary
+      const isSalarySelected = filters.salary.some(
+        (selectedSalary) => selectedSalary >= job.maxJdSalary
       );
-      if (job.minJdSalary < minSalaryValue) {
-        return false; // Exclude jobs with salary less than the minimum selected salary
+      if (!isSalarySelected) {
+        return false; // Exclude jobs where none of the selected salaries are less than or equal to job.minJdSalary
       }
     }
 
