@@ -2,11 +2,78 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Filter from './components/Filter';
 import JobCard from './components/JobCard';
+import JobNoFound from './components/JobNoFound';
 
 function App() {
   const [jobs, setJobs] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const [filters, setFilters] = useState({
+    role: [],
+    employees: [],
+    experience: [],
+    remote: [],
+    salary: [],
+  });
+
+  const [locationSearch, setLocationSearch] = useState('');
+  const [companySearch, setCompanySearch] = useState('');
+
+  // const [updatedJobs, setUpdatedJobs] = useState([]);
+
+  const handleFilterChange = (updatedFilters) => {
+    setFilters(updatedFilters);
+  };
+
+  // Assuming `jobs` is your original array of jobs and `filters` is your object containing filter criteria
+
+  // Combine all filters into a single filtering logic
+  const filteredJobs = jobs.filter((job) => {
+    // Filter by role
+    if (filters.role.length && !filters.role.includes(job.jobRole)) {
+      return false;
+    }
+
+    // Filter by experience
+    if (filters.experience.length && !filters.experience.includes(job.minExp)) {
+      return false;
+    }
+
+    // Filter by remote work options
+    if (filters.remote.length && !filters.remote.includes(job.remote)) {
+      return true;
+    }
+
+    if (filters.salary.length) {
+      const minSalaryValue = Math.min(
+        ...filters.salary.map((option) => option.value)
+      );
+      if (job.minJdSalary < minSalaryValue) {
+        return false; // Exclude jobs with salary less than the minimum selected salary
+      }
+    }
+
+    if (
+      locationSearch &&
+      !job.location.toLowerCase().includes(locationSearch.toLowerCase())
+    ) {
+      return false;
+    }
+
+    // Filter by company name
+    if (
+      companySearch &&
+      !job.companyName.toLowerCase().includes(companySearch.toLowerCase())
+    ) {
+      return false;
+    }
+
+    return true;
+  });
+
+  // Update the state with the filtered jobs
+  // setUpdatedJobs(filteredJobs);
 
   const loadMoreJobs = async () => {
     setLoading(true);
@@ -35,10 +102,12 @@ function App() {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
+      console.log(data);
 
       // Check if the response contains the expected properties
       if (data.jdList && Array.isArray(data.jdList)) {
         setJobs((prevJobs) => [...prevJobs, ...data.jdList]); // Append new jobs to the existing array
+        console.log(jobs);
         setPage((prevPage) => prevPage + 1); // Increment the page counter
       } else {
         console.error(
@@ -76,12 +145,22 @@ function App() {
 
   return (
     <>
-      <Filter />
+      <Filter
+        onFilterChange={handleFilterChange}
+        locationSearch={locationSearch}
+        setLocationSearch={setLocationSearch}
+        companySearch={companySearch}
+        setCompanySearch={setCompanySearch}
+      />
+
       <div className='app'>
-        {jobs.map((job, index) => (
-          <JobCard key={index} job={job} />
-        ))}
+        {filteredJobs.length > 0 ? (
+          filteredJobs.map((job, index) => <JobCard key={index} job={job} />)
+        ) : (
+          <JobNoFound />
+        )}
       </div>
+      {loading && <div>Loading...</div>}
     </>
   );
 }
