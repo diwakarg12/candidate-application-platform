@@ -2,33 +2,48 @@
 // import React from 'react';
 import style from '../styles/JobCard.module.css';
 import { Button } from './Button';
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-
-const JobCard = ({job}) => {
+const JobCard = ({ job }) => {
   return (
     <div className={style.jobPosting}>
       <div className={style.companyDetails}>
         <img src={job.logoUrl} alt='Company Logo' />
-        <div className='profile'>
-          <p style={{ color: '#8b8b8b', fontWeight: '600' }}>
+        <div className={style.profile}>
+          <p
+            style={{
+              color: '#8b8b8b',
+              fontWeight: '600',
+              fontSize: '20px',
+            }}
+          >
             {job.companyName}
           </p>
-          <p>{job.jobRole}</p>
-          <p style={{ fontSize: '13px' }}>{job.location}</p>
+          <p style={{ fontSize: '18px' }}>{job.jobRole}</p>
+          <p style={{ fontSize: '15px' }}>{job.location}</p>
         </div>
       </div>
       <div className={style.jobDetails}>
-        <p className={style.description}>
+        <p className={style.estimatedSalary}>
           Estimated Salary: {job.salaryCurrencyCode}
-          {job.maxJdSalary}
+          {job.maxJdSalary} ✅
         </p>
-        <h2>About the Company</h2>
+        <h2 style={{ marginTop: '0.5rem' }}>About the Company</h2>
         <p className={style.description}>{job.jobDetailsFromCompany}</p>
         <div className={style.descriptionBlur1}></div>
         <div className={style.descriptionBlur2}></div>
-        <button className={style.showMore}>Show more</button>
-        <div style={{ display: 'block', textAlign: 'left', width: '100%' }}>
+        <Link to={`/${job.jdUid}`} className={style.showMore}>
+          Show more
+        </Link>
+        <div
+          style={{
+            display: 'block',
+            textAlign: 'left',
+            width: '100%',
+            margin: '1.5rem 0',
+          }}
+        >
           <p style={{ color: '#8b8b8b', fontWeight: '800' }}>
             Minimum Experience
           </p>
@@ -46,9 +61,6 @@ const JobCard = ({job}) => {
 };
 
 export default JobCard;
-
-
-
 
 // const myHeaders = new Headers();
 // myHeaders.append('Content-Type', 'application/json');
@@ -81,5 +93,3 @@ export default JobCard;
 // minExp: 3;
 // minJdSalary: null;
 // salaryCurrencyCode: 'USD';
-
-

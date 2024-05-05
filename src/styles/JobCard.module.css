@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Lexend:wght@100..900&display=swap');
+
 .jobPosting {
   display: flex;
   flex-direction: column;
@@ -9,36 +11,40 @@
   width: 19rem;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  transition: transform 0.3s ease-in-out;
+  font-family: "Lexend Deca", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
 }
+/* .jobPosting:hover{
+  transform: scale(1.02);
+} */
 
 p {
   margin: 10px 0;
   font: 600;
   width: 100%;
   text-align: left;
+  text-transform: capitalize;
 }
 
 .companyDetails {
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
 }
 
 .companyDetails img {
   margin-top: 15px;
   margin-right: 10px;
-  width: 15%;
+  width: 18%;
   object-fit: cover;
   border-radius: 50%;
-  border: 1px solid red;
 }
 .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  margin-top: 100px;
+  margin: 0.5rem 0 0 1rem;
 }
 
 .jobDetails {
@@ -55,36 +61,42 @@ p {
   text-align: left;
 }
 
+.estimatedSalary {
+  margin-top: 1rem;
+}
+
 .description {
+  position: relative;
   display: -webkit-box;
   -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 0rem;
 }
 
 .descriptionBlur1 {
   position: absolute;
   width: 19rem;
   height: 2rem;
-  margin-bottom: 0.1rem;
+  margin: 5rem 0 0 0;
   backdrop-filter: blur(0.6px);
 }
 .descriptionBlur2 {
   position: absolute;
   width: 19rem;
   height: 1rem;
-  margin-top: 1rem;
+  margin-top: 7.5rem;
   backdrop-filter: blur(0.8px);
 }
 
 .showMore {
-  position: absolute;
-  top: 21rem;
   background: transparent;
+  margin-top: -1.2rem;
+  z-index: 100;
   border: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   color: blue;
 }
 

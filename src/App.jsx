@@ -48,7 +48,7 @@ function App() {
     if (filters.salary.length) {
       // Check if any of the selected salary values are less than job.minJdSalary
       const isSalarySelected = filters.salary.some(
-        (selectedSalary) => selectedSalary >= job.maxJdSalary
+        (selectedSalary) => selectedSalary <= job.maxJdSalary
       );
       if (!isSalarySelected) {
         return false; // Exclude jobs where none of the selected salaries are less than or equal to job.minJdSalary
@@ -83,8 +83,8 @@ function App() {
 
     // Ensure fetching 12 items per request
     const body = JSON.stringify({
-      limit: 12, // Fetching 12 items per request
-      offset: page * 12, // Calculating offset based on the current page
+      limit: 8, // Fetching 12 items per request
+      offset: page * 8, // Calculating offset based on the current page
     });
 
     const requestOptions = {
